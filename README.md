@@ -1,2 +1,2 @@
 # ovz-bbr-powered
-mark
+wget --no-check-certificate 
