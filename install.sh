@@ -78,23 +78,6 @@ fi
 
 
 
-
-
-if [ "${release}" == "CentOS" ]; then
-	yum install -y haproxy
-elif [[ "${release}" == "Debian" && "$ver" == "7" ]]; then
-	echo "deb http://ftp.debian.org/debian wheezy-backports main" >> /etc/apt/sources.list
-	apt-get install debian-archive-keyring
-	apt-key update
-	apt-get update
-	apt-get install -y haproxy
-	update-rc.d haproxy disable
-else
-	apt-get update
-	apt-get install -y haproxy
-	update-rc.d haproxy disable
-fi
-
 cd /root
 apt-get install -y git
 git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git
