@@ -159,12 +159,11 @@ iptables -A INPUT -i lo -p tcp -m tcp --dport 12420 -m comment --comment LKL_RAW
 iptables -A INPUT -p tcp -m tcp --dport 12420 -m comment --comment LKL_RAW -j DROP
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables-save > /etc/iptables
-touch /etc/network/if-pre-up.d/iptables
-chmod +x /etc/network/if-pre-up.d/iptables
 
 cat > /etc/network/if-pre-up.d/iptables<<-EOF
 #!/bin/sh
 /sbin/iptables-restore < /etc/iptables
 EOF
 
-iptables-save > /etc/iptables
+chmod +x /etc/network/if-pre-up.d/iptables
+
