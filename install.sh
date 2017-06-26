@@ -105,9 +105,9 @@ cat > /root/shadowsocksr/user-config.json<<-EOF
 }
 EOF
 
-cd /usr/bin
+cd /root
 wget --no-check-certificate https://raw.githubusercontent.com/mishaelre/ovz-bbr-powered/master/rinetd
-chmod +x /usr/bin/rinetd
+chmod +x rinetd
 echo "0.0.0.0 12420 0.0.0.0 12420" > /etc/rinetd.conf
 
 
@@ -126,7 +126,7 @@ cat > /etc/init.d/rinetd.sh<<-EOF
 # Description: ovz vps bbr
 ### END INIT INFO
 
-nohup /usr/bin/rinetd -f -c /etc/rinetd.conf raw venet0:0 >/dev/null 2>&1 &
+nohup /root/rinetd -f -c /etc/rinetd.conf raw venet0:0 >/dev/null 2>&1 &
 EOF
 
 chmod +x /etc/init.d/rinetd.sh
