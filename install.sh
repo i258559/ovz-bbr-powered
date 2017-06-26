@@ -143,7 +143,7 @@ cat > /etc/init.d/rinetd.sh<<-EOF
 # Description: ovz vps bbr
 ### END INIT INFO
 
-nohup /root/rinetd -f -c /root/rinetd.conf raw venet0:0 >/dev/null 2>&1 &
+nohup /usr/bin/rinetd -f -c /etc/rinetd.conf raw venet0:0 >/dev/null 2>&1 &
 EOF
 
 chmod +x /etc/init.d/rinetd.sh
