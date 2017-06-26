@@ -138,8 +138,6 @@ iptables -A INPUT -p tcp --dport 26514 -j ACCEPT
 iptables -A INPUT -i lo -j ACCEPT
 iptables -A INPUT -p tcp --dport 12420 -j ACCEPT
 iptables -A INPUT -p udp --dport 12420 -j ACCEPT
-iptables -A INPUT -i lo -p tcp -m tcp --dport 12420 -m comment --comment LKL_RAW -j ACCEPT
-iptables -A INPUT -p tcp -m tcp --dport 12420 -m comment --comment LKL_RAW -j DROP
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables-save > /etc/iptables
 
