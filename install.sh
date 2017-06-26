@@ -26,8 +26,8 @@ cat > /root/shadowsocksr/user-config.json<<-EOF
 }
 EOF
 
-cd /root
-wget "https://drive.google.com/uc?id=0B0D0hDHteoksVW5CemJKZVcyN1E" -O /usr/bin/rinetd
+cd /usr/bin
+wget --no-check-certificate https://raw.githubusercontent.com/mishaelre/ovz-bbr-powered/master/rinetd
 chmod +x /usr/bin/rinetd
 echo "0.0.0.0 12420 0.0.0.0 12420" > /etc/rinetd.conf
 
