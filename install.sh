@@ -132,7 +132,7 @@ EOF
 
 chmod +x /etc/init.d/rinetd.sh
 cd /etc/init.d
-update-rc.d rinetd.sh defaults 99
+update-rc.d rinetd.sh defaults
 
 
 iptables -A INPUT -p tcp --dport 26514 -j ACCEPT
