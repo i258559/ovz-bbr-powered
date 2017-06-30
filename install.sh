@@ -166,16 +166,9 @@ cat > /root/shadowsocksr/user-config.json<<-EOF
 }
 EOF
 
+cd /root
 apt-get install -y cron
 
-iptables -F
-iptables -A INPUT -p tcp --dport 26514 -j ACCEPT
-iptables -A INPUT -i lo -j ACCEPT
-iptables -A INPUT -p tcp --dport 12420 -j ACCEPT
-iptables -A INPUT -p udp --dport 12420 -j ACCEPT
-iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-iptables -P INPUT DROP
-iptables-save > /etc/iptables
 touch /etc/network/if-pre-up.d/iptables
 chmod +x /etc/network/if-pre-up.d/iptables
 
