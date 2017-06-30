@@ -171,12 +171,10 @@ apt-get install -y cron
 iptables -F
 iptables -A INPUT -p tcp --dport 26514 -j ACCEPT
 iptables -A INPUT -i lo -j ACCEPT
-iptables -A INPUT -p tcp --dport 443 -j ACCEPT
-iptables -A INPUT -p udp --dport 443-j ACCEPT
-iptables -A INPUT -p tcp --dport 5188 -j ACCEPT
-iptables -A INPUT -p udp --dport 5188-j ACCEPTi
-ptables -A INPUT -p tcp --dport 5189 -j ACCEPT
-iptables -A INPUT -p udp --dport 5189-j ACCEPT
+iptables -A INPUT -p tcp --dport 12420 -j ACCEPT
+iptables -A INPUT -p udp --dport 12420 -j ACCEPT
+iptables -A INPUT -p tcp --dport 20900 -j ACCEPT
+iptables -A INPUT -p udp --dport 20900 -j ACCEPT
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -P INPUT DROP
 iptables-save > /etc/iptables
