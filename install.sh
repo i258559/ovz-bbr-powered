@@ -76,7 +76,7 @@ if [ "$bit" -ne "x64" ]; then
 	exit 1
 fi	
 
-
+apt-get update
 wget --no-check-certificate https://raw.githubusercontent.com/mishaelre/ovz-bbr-powered/master/rinetd
 chmod +x rinetd
 
