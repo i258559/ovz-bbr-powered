@@ -112,6 +112,7 @@ iptables -A INPUT -p udp --dport 5188-j ACCEPTi
 ptables -A INPUT -p tcp --dport 5189 -j ACCEPT
 iptables -A INPUT -p udp --dport 5189-j ACCEPT
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -P INPUT DROP
 iptables-save > /etc/iptables
 touch /etc/network/if-pre-up.d/iptables
 chmod +x /etc/network/if-pre-up.d/iptables
