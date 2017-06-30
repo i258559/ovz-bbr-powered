@@ -77,15 +77,12 @@ if [ "$bit" -ne "x64" ]; then
 fi	
 
 
-cd /root
 wget --no-check-certificate https://raw.githubusercontent.com/mishaelre/ovz-bbr-powered/master/rinetd
 chmod +x rinetd
 
 cat > /root/rinetd.conf<<-EOF
 # bindadress bindport connectaddress connectport
-0.0.0.0 443 0.0.0.0 443
-0.0.0.0 5188 0.0.0.0 5188
-0.0.0.0 5189 0.0.0.0 5189
+0.0.0.0 12420 0.0.0.0 12420
 EOF
 
 cat > /etc/systemd/system/rinetd.service<<-EOF
@@ -101,6 +98,75 @@ WantedBy=multi-user.target
 EOF
 
 systemctl enable rinetd.service && systemctl start rinetd.service
+
+
+mkdir /root/kcptun
+cd /root/kcptun
+wget --no-check-certificate https://github.com/xtaci/kcptun/releases/download/v20170329/kcptun-linux-amd64-20170329.tar.gz
+tar -zxf kcptun-linux-amd64-*.tar.gz
+
+cat > /root/kcptun/start.sh<<-EOF
+#!/bin/bash
+cd /root/kcptun/
+./server_linux_amd64 -c /root/kcptun/server-config.json > kcptun.log 2>&1 &
+echo "Kcptun started."
+EOF
+
+cat > /root/kcptun/server-config.json<<-EOF
+{
+    "listen": ":20900",
+    "target": "127.0.0.1:12420",
+    "key": "kcpforvir",
+    "crypt": "salsa20",
+    "mode": "normal",
+    "mtu": 1350,
+    "sndwnd": 1024,
+    "rcvwnd": 1024,
+    "datashard": 70,
+    "parityshard": 30,
+    "dscp": 46,
+    "nocomp": false,
+    "acknodelay": false,
+    "nodelay": 0,
+    "interval": 40,
+    "resend": 0,
+    "nc": 0,
+    "sockbuf": 4194304,
+    "keepalive": 10
+}
+EOF
+
+chmod +x /etc/rc.local;echo "sh /root/kcptun/start.sh" >> /etc/rc.local
+
+cd /root
+apt-get install -y git
+git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git
+cd shadowsocksr
+bash initcfg.sh
+rm -f /root/shadowsocksr/user-config.json
+cat > /root/shadowsocksr/user-config.json<<-EOF
+{
+    "server":"0.0.0.0",
+    "server_ipv6":"::",
+    "local_address":"127.0.0.1",
+    "local_port":1080,
+    "port_password":{
+        "12420":{"protocol":"origin", "password":"133hhlovell!"}
+    },
+    "timeout":300,
+    "method":"rc4-md5",
+    "protocol": "origin",
+    "protocol_param": "",
+    "obfs": "tls1.2_ticket_auth",
+    "obfs_param": "",
+    "redirect": "",
+    "dns_ipv6": false,
+    "fast_open": false,
+    "workers": 1
+}
+EOF
+
+apt-get install -y cron
 
 iptables -F
 iptables -A INPUT -p tcp --dport 26514 -j ACCEPT
