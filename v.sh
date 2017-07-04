@@ -21,6 +21,7 @@ xfce4-session &
 #export XKL_XMODMAP_DISABLE=1 
 #/etc/X11/Xsession
 EOF
+chmod +x /root/.vnc/xstartup
 #设置开机启动
 update-rc.d vncserver defaults
 #安装火狐
