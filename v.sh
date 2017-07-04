@@ -1,5 +1,6 @@
 #!/bin/bash
 apt-get update
+apt-get upgrade -y
 apt-get install -y vnc4server
 apt-get install -y xfce4
 #开启服务
