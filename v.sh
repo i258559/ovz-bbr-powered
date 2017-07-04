@@ -30,7 +30,7 @@ apt-get -y install firefox-esr
 vncserver :1
 apt-get install -y cron
 
-/etc/init.d/vncserver
+cat > /etc/init.d/vncserver<<EOF
 #! /bin/sh
 export USER="root"
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/bin/X11"
@@ -62,3 +62,5 @@ echo "Usage: /etc/init.d/$NAME {start|stop|restart}"
 ;;
 esac
 exit 0
+EOF
+chmod +x /etc/init.d/vncserver
