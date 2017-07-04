@@ -5,10 +5,10 @@ apt-get install -y tightvncserver
 apt-get install -y xfce4
 #开启服务
 echo "启动vnc服务，请输入密码（ 不少于8位）"
-vncserver :1
+tightvncserver :1
 echo "启动成功，暂停配置中。。。"
 #暂停vnc
-vncserver -kill :1
+tightvncserver -kill :1
 #配置文件
 rm -f /root/.vnc/xstartup
 cat > /root/.vnc/xstartup<<EOF
