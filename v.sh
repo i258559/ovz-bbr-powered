@@ -9,13 +9,6 @@ echo "启动成功，暂停配置中。。。"
 #暂停vnc
 vncserver -kill :1
 #配置文件
-cat > /etc/sysconfig/vncservers<<EOF
-#!/bin/shxrdb $HOME/.Xresources
-xsetroot -solid grey
-x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
-# x-window-manager &
-gnome-session &
-EOF
 rm -f /root/.vnc/xstartup
 cat > /root/.vnc/xstartup<<EOF
 #!/bin/sh
