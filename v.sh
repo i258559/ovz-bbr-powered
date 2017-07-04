@@ -22,7 +22,7 @@ xfce4-session &
 #/etc/X11/Xsession
 EOF
 #设置开机启动
-chkconfig vncserver on
+update-rc.d vncserver defaults
 #安装火狐
 apt-get -y install firefox-esr
 #重启vnc
