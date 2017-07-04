@@ -26,7 +26,8 @@ chmod +x /root/.vnc/xstartup
 #设置开机启动
 update-rc.d vncserver defaults
 #安装火狐
-apt-get -y install firefox-esr
+apt-get install -y firefox-esr
+apt-get install -y flashplugin-nonfree
 #重启vnc
 vncserver :1
 apt-get install -y cron
