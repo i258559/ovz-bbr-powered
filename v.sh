@@ -63,4 +63,4 @@ echo "Usage: /etc/init.d/$NAME {start|stop|restart}"
 esac
 exit 0
 EOF
-chmod +x /etc/init.d/vncserver
+chmod 755 /etc/init.d/vncserver ; update-rc.d vncserver defaults ; service vncserver start
