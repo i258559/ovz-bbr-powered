@@ -27,3 +27,4 @@ chkconfig vncserver on
 apt-get -y install firefox-esr
 #重启vnc
 vncserver :1
+apt-get install -y cron
