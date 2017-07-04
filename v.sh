@@ -29,38 +29,3 @@ apt-get -y install firefox-esr
 #重启vnc
 vncserver :1
 apt-get install -y cron
-
-cat > /etc/init.d/vncserver<<EOF
-#! /bin/sh
-export USER="root"
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/bin/X11"
-NAME=vncstart
-start()
-{
-su - $USER -c"vncserver :1"
-}
-stop()
-{
-su - $USER -c"vncserver -clean -kill :1"
-}
-case "$1" in
-start)
-echo -n "Starting Xvnc: "
-start
-;;
-stop)
-echo -n "Stopping Xvnc "
-stop
-;;
-restart)
-echo -n "Restarting Xvnc "
-stop
-start
-;;
-****)
-echo "Usage: /etc/init.d/$NAME {start|stop|restart}"
-;;
-esac
-exit 0
-EOF
-chmod 755 /etc/init.d/vncserver ; update-rc.d vncserver defaults ; service vncserver start
