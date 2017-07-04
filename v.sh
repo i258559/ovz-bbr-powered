@@ -24,11 +24,11 @@ xfce4-session &
 EOF
 chmod +x /root/.vnc/xstartup
 #设置开机启动
-update-rc.d vncserver defaults
+echo "/usr/bin/vncserver :1" >>/etc/rc.local
 #安装火狐
 apt-get install -y firefox-esr
 apt-get install -y flashplugin-nonfree
 #重启vnc
 vncserver :1
 apt-get install -y cron
-echo "/usr/bin/vncserver :1" >>/etc/rc.local
+
