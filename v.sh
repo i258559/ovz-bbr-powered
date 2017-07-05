@@ -1,6 +1,5 @@
 #!/bin/bash
 apt-get update
-apt-get upgrade -y
 apt-get install -y tightvncserver
 apt-get install -y xfce4
 #开启服务
