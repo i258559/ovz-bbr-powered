@@ -23,9 +23,7 @@ xfce4-session &
 EOF
 chmod +x /root/.vnc/xstartup
 #设置开机启动
-chkconfig vncserver on
-#修改权限
-update-rc.d tightvncserver defaults
+
 #安装火狐
 apt-get install -y firefox-esr
 apt-get install -y flashplugin-nonfree
