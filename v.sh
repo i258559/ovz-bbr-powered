@@ -22,39 +22,6 @@ xfce4-session &
 #/etc/X11/Xsession
 EOF
 chmod +x /root/.vnc/xstartup
-#设置开机启动
-cat > /etc/init.d/tightvncserver<<-EOF
-#!/bin/sh
-### BEGIN INIT INFO
-# Provides: tightvncserver
-# Required-Start: $syslog $remote_fs $network
-# Required-Stop: $syslog $remote_fs $network
-# Default-Start: 2 3 4 5
-# Default-Stop: 0 1 6
-# Short-Description: Starts VNC Server on system start.
-# Description: Starts tight VNC Server. Script written by James Swineson.
-### END INIT INFO
-# /etc/init.d/tightvncserver
-VNCUSER='pi'
-case "$1" in
-        start)
-                su $VNCUSER -c '/usr/bin/tightvncserver :1'
-                echo "Starting TightVNC Server for $VNCUSER"
-        ;;
-        stop)
-                pkill Xtightvnc
-                echo "TightVNC Server stopped"
-        ;;
-        *)
-                echo "Usage: /etc/init.d/tightvncserver {start|stop}"
-                exit 1
-        ;;
-esac
-exit 0
-EOF
-
-chmod 755 /etc/init.d/tightvncserver
-update-rc.d tightvncserver defaults
 #安装火狐
 apt-get install -y firefox-esr
 apt-get install -y flashplugin-nonfree
