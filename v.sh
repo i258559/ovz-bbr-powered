@@ -26,7 +26,9 @@ chmod +x /root/.vnc/xstartup
 #设置开机启动
 touch /etc/init.d/tightvncserver
 chmod +x /etc/init.d/tightvncserver
+
 cat > /etc/init.d/tightvncserver<<-EOF
+
 #!/bin/sh
 ### BEGIN INIT INFO
 # Provides: tightvncserver
@@ -54,7 +56,9 @@ exit 1
 ;;
 esac
 exit 0`</pre>
+
 EOF
+
 #修改权限
 chmod 755 /etc/init.d/tightvncserver
 update-rc.d tightvncserver defaults
@@ -65,4 +69,3 @@ apt-get install -y flashplugin-nonfree
 #重启vnc
 vncserver :1
 apt-get install -y cron
-apt-get install -y gksu
