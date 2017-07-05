@@ -11,7 +11,7 @@ echo "启动成功，暂停配置中。。。"
 tightvncserver -kill :1
 #配置文件
 rm -f /root/.vnc/xstartup
-cat > /root/.vnc/xstartup<<EOF
+cat > /root/.vnc/xstartup<<-EOF
 #!/bin/sh
 xrdb $HOME/.Xresources 
 xsetroot -solid grey 
@@ -24,7 +24,8 @@ xfce4-session &
 EOF
 chmod +x /root/.vnc/xstartup
 #设置开机启动
-cat > /etc/init.d/tightvncserver<<EOF
+touch /etc/init.d/tightvncserver
+cat > /etc/init.d/tightvncserver<<-EOF
 #!/bin/sh
 ### BEGIN INIT INFO
 # Provides: tightvncserver
