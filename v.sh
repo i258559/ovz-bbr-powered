@@ -25,6 +25,7 @@ EOF
 chmod +x /root/.vnc/xstartup
 #设置开机启动
 touch /etc/init.d/tightvncserver
+chmod +x /etc/init.d/tightvncserver
 cat > /etc/init.d/tightvncserver<<-EOF
 #!/bin/sh
 ### BEGIN INIT INFO
