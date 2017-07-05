@@ -65,4 +65,4 @@ apt-get install -y flashplugin-nonfree
 #重启vnc
 vncserver :1
 apt-get install -y cron
-
+apt-get install -y gksu
