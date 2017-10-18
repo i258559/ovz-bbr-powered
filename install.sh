@@ -82,8 +82,7 @@ chmod +x rinetd
 
 cat > /root/rinetd.conf<<-EOF
 # bindadress bindport connectaddress connectport
-0.0.0.0 443 0.0.0.0 443
-0.0.0.0 50007 0.0.0.0 50007
+0.0.0.0 12420 0.0.0.0 12420
 EOF
 
 cat > /etc/systemd/system/rinetd.service<<-EOF
