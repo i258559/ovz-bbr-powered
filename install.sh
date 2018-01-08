@@ -82,7 +82,7 @@ chmod +x rinetd
 
 cat > /root/rinetd.conf<<-EOF
 # bindadress bindport connectaddress connectport
-0.0.0.0 12420 0.0.0.0 12420
+0.0.0.0 443 0.0.0.0 443
 EOF
 
 cat > /etc/systemd/system/rinetd.service<<-EOF
@@ -115,8 +115,8 @@ EOF
 cat > /root/kcptun/server-config.json<<-EOF
 {
     "listen": ":20900",
-    "target": "127.0.0.1:12420",
-    "key": "kcpforvir",
+    "target": "127.0.0.1:443",
+    "key": "test",
     "crypt": "salsa20",
     "mode": "normal",
     "mtu": 1350,
